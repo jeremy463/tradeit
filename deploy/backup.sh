@@ -13,5 +13,15 @@ r = sqlite3.connect(sys.argv[1]).execute("PRAGMA integrity_check").fetchone()[0]
 sys.exit(0 if r == "ok" else 1)
 PYEOF
 ls -1t "$DEST"/apex-*.db 2>/dev/null | tail -n +"$((KEEP + 1))" | xargs -r rm --
-[ -n "${APEX_OFFSITE_CMD:-}" ] && bash -c "$APEX_OFFSITE_CMD" _ "$OUT"
+if [ -n "${APEX_OFFSITE_CMD:-}" ]; then
+    # Validate the user-provided shell snippet before executing it; this avoids the
+    # cryptic 'syntax error near unexpected token' crash when the env var contains
+    # malformed shell syntax, while still allowing valid commands that use $1 as the
+    # backup path, e.g. 'rclone copy "$1" remote:apex-backups/'
+    if ! bash -n -c "$APEX_OFFSITE_CMD" >/dev/null 2>&1; then
+        echo "APEX_OFFSITE_CMD is invalid shell syntax; expected a command like: rclone copy \"\$1\" remote:apex-backups/" >&2
+        exit 1
+    fi
+    bash -c "$APEX_OFFSITE_CMD" _ "$OUT"
+fi
 echo "backup ok: $OUT"
