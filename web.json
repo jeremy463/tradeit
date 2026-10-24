@@ -1,0 +1,49 @@
+{
+  "production": true,
+  "base_url": "https://localhost",
+  "secure_cookies": true,
+  "trusted_proxy": true,
+  "host": "127.0.0.1",
+  "port": 8080,
+  "trusted_proxies": [
+    "127.0.0.1",
+    "::1"
+  ],
+  "brand_name": "APEX Trader",
+  "company_name": "APEX Trader",
+  "support_email": "atobateleheritage@gmail.com",
+  "legal_jurisdiction": "Nigeria",
+  "legal_updated": "2026-10-24",
+  "legal_reviewed": true,
+  "db_path": "C:\\Users\\user\\Downloads\\apex_trader\\apex_trader\\data\\apex_web.db",
+  "log_path": "C:\\Users\\user\\Downloads\\apex_trader\\apex_trader\\data\\web.log",
+  "edge_path": "C:\\Users\\user\\Downloads\\apex_trader\\apex_trader\\data\\apex_edge.json",
+  "backup_dir": "C:\\Users\\user\\Downloads\\apex_trader\\apex_trader\\data\\backups",
+  "currency": "NGN",
+  "price_kobo": {
+    "pro": 1500000,
+    "elite": 4500000
+  },
+  "paystack_webhook_ips": [],
+  "feed_type": "oanda",
+  "feed_fallback_type": "",
+  "feed_symbols": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "AUDUSD",
+    "USDCAD",
+    "USDCHF",
+    "NZDUSD"
+  ],
+  "oanda_account": "LOCAL-SETUP-ACCOUNT",
+  "oanda_practice": true,
+  "smtp_host": "",
+  "smtp_port": 587,
+  "smtp_user": "",
+  "smtp_from": "",
+  "smtp_security": "starttls",
+  "news_enabled": true,
+  "news_interval_minutes": 15,
+  "alerts_interval_seconds": 60
+}

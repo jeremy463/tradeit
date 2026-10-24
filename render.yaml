@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: apex-trader
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: >-
+      python - <<'PY'
+      import os
+      from apex.web.main import build_render_config
+      build_render_config('/tmp/web.json')
+      PY
+      python -m apex.cli --config /tmp/web.json web-serve
+    envVars:
+      - key: RENDER
+        value: true
+      - key: APEX_COMPANY_NAME
+        value: Your Company
+      - key: APEX_SUPPORT_EMAIL
+        value: support@your-domain.com
+      - key: APEX_JURISDICTION
+        value: Nigeria
+      - key: APEX_BRAND_NAME
+        value: APEX Trader
+      - key: APEX_LEGAL_REVIEWED
+        value: true
+      - key: APEX_FEED_TYPE
+        value: oanda
+      - key: APEX_FEED_FALLBACK_TYPE
+        value: twelvedata
+      - key: APEX_FEED_SYMBOLS
+        value: EURUSD,GBPUSD,USDJPY,AUDUSD,USDCAD,USDCHF,NZDUSD
+      - key: OANDA_ACCOUNT
+        value: ''
+      - key: OANDA_TOKEN
+        sync: false
+      - key: TWELVEDATA_API_KEY
+        sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
